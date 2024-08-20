@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ personal_info.name }} - About{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">About Me</h1>
+<div class="row">
+    <div class="col-md-8">
+        <div class="card mb-4">
+            <div class="card-body">
+                <p class="card-text">{{ personal_info.bio }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        {% if personal_info.profile_picture %}
+            <img src="{{ personal_info.profile_picture.url }}" alt="{{ personal_info.name }}" class="img-fluid rounded mb-4">
+        {% endif %}
+    </div>
+</div>
+
+<h2 class="h3 mb-3">Education</h2>
+<div class="row">
+    {% for edu in education %}
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="card-title h5">{{ edu.degree }} in {{ edu.field_of_study }}</h3>
+                    <h4 class="card-subtitle mb-2 text-muted">{{ edu.institution }}</h4>
+                    <p class="card-text">
+                        <small class="text-muted">{{ edu.start_date|date:"Y" }} - {% if edu.end_date %}{{ edu.end_date|date:"Y" }}{% else %}Present{% endif %}</small>
+                    </p>
+                    {% if edu.description %}
+                        <p class="card-text">{{ edu.description }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<h2 class="h3 mb-3">Work Experience</h2>
+<div class="row">
+    {% for work in work_experience %}
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="card-title h5">{{ work.position }}</h3>
+                    <h4 class="card-subtitle mb-2 text-muted">{{ work.company }}</h4>
+                    <p class="card-text">
+                        <small class="text-muted">{{ work.start_date|date:"F Y" }} - {% if work.end_date %}{{ work.end_date|date:"F Y" }}{% else %}Present{% endif %}</small>
+                    </p>
+                    <p class="card-text">{{ work.description }}</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

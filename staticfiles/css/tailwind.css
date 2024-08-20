@@ -1,0 +1,15 @@
+@import 'tailwindcss/base';
+@import './custom/base.css';
+
+@import 'tailwindcss/components';
+@import './custom/components.css';
+
+@import 'tailwindcss/utilities';
+@import './custom/utilities.css';
+
+/* Page-specific styles */
+@import './custom/pages/home.css';
+@import './custom/pages/about.css';
+@import './custom/pages/projects.css';
+@import './custom/pages/skills.css';
+@import './custom/pages/contact.css';
