@@ -91,7 +91,7 @@ DATABASES = {
 }
 
 database_url = os.environ.get("DATABASE_URL")
-DATABASES= dj_database_url.parse(database_url)
+DATABASES['default']= dj_database_url.parse(database_url)
 
 
 # Password validation
@@ -131,7 +131,6 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 
-STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
