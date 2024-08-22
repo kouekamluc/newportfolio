@@ -15,12 +15,13 @@ class Category(models.Model):
 class Project(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
-    image = models.ImageField(upload_to='project_images/', blank=True)
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='projects')
     technologies = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='project_images/', blank=True)
     github_url = models.URLField(blank=True)
     live_url = models.URLField(blank=True)
     date_completed = models.DateField()
+    featured = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title

@@ -8,4 +8,4 @@ class SkillListView(ListView):
     context_object_name = 'categories'
 
     def get_queryset(self):
-        return SkillCategory.objects.prefetch_related('skills')
+        return SkillCategory.objects.prefetch_related('skills').all()

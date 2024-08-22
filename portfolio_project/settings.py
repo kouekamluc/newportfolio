@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-
+import os
+import dj_database_url # type: ignore
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-=m%ob9g5qtn)eyy8c=#5kw3pa$vb976=0ur3$vrq6$o4luy&34'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', False) == 'True' 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(" ")
 
 
 # Application definition
@@ -84,6 +85,9 @@ DATABASES = {
     }
 }
 
+database_url = os.environ.get("DATABASE_URL")
+DATABASES['default'] = dj_database_url.parse(database_url)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -134,3 +138,24 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+CONTACT_EMAIL = 'luckevinkouekam@example.com'
+
+# This is the "from" address for emails sent by your application
+DEFAULT_FROM_EMAIL = 'noreply@yourwebsite.com'
+
+# how tocomment the remaining lines of code 
+
+
+
+# EMAIL_HOST = 'smtp.gmail.com'  # Or your email provider's SMTP server
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'kouekamkamgouluc@gmail.com'
+# EMAIL_HOST_PASSWORD = 'qzbzjlnorsyimaf'  # Use an app password if you have 2FA enabled
+
+# DEFAULT_FROM_EMAIL = 'kouekamkamgouluc@gmail.com'
+# CONTACT_EMAIL = 'kouekamkamgouluc@gmail.com'  # The email where you want to receive contact form submissions
