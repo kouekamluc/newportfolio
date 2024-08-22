@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'skills.apps.SkillsConfig',
     'contact.apps.ContactConfig',
     'projects.apps.ProjectsConfig',
+    'white'
 ]
 
 
